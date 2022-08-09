@@ -2,6 +2,8 @@
 
 [![GoDoc](https://godoc.org/github.com/cthackers/sonargo/sonar?status.svg)](https://godoc.org/github.com/cthackers/sonargo/sonar)
 
+version 1.0.0
+
 Client of [sonarqube api](https://sonarcloud.io/web_api) in golang
 ## Compatibility
 As `sonarqube api` is updated frequently, this client now only support [v7.4](https://www.sonarqube.org/sonarqube-7-4/). Forward compatibility is not  guaranteed in this version (To be done).
