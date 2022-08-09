@@ -116,7 +116,6 @@ func Do(c *http.Client, req *http.Request, v interface{}) (*http.Response, error
 				*w = string(byts)
 			} else {
 				decoder := json.NewDecoder(resp.Body)
-				decoder.DisallowUnknownFields()
 				err = decoder.Decode(v)
 			}
 		}
