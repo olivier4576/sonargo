@@ -16,20 +16,22 @@ type MeasuresComponentObject struct {
 }
 
 type SonarMeasure struct {
-	Metric    string     `json:"metric,omitempty"`
-	Periods   []*Period  `json:"periods,omitempty"`
-	Value     string     `json:"value,omitempty"`
-	Histories []*History `json:"history,omitempty"`
-	BestValue bool       `json:"bestValue,omitempty"`
+	Metric                string     `json:"metric,omitempty"`
+	Periods               []*Period  `json:"periods,omitempty"`
+	Value                 string     `json:"value,omitempty"`
+	Histories             []*History `json:"history,omitempty"`
+	HigherValuesAreBetter bool       `json:"higherValuesAreBetter,omitempty"`
+	BestValue             bool       `json:"bestValue,omitempty"`
 }
 
 type Period struct {
-	Date      string `json:"date,omitempty"`
-	Index     int64  `json:"index,omitempty"`
-	Mode      string `json:"mode,omitempty"`
-	Parameter string `json:"parameter,omitempty"`
-	Value     string `json:"value,omitempty"`
-	BestValue bool   `json:"bestValue,omitempty"`
+	Date                  string `json:"date,omitempty"`
+	Index                 int64  `json:"index,omitempty"`
+	Mode                  string `json:"mode,omitempty"`
+	Parameter             string `json:"parameter,omitempty"`
+	Value                 string `json:"value,omitempty"`
+	HigherValuesAreBetter bool   `json:"higherValuesAreBetter,omitempty"`
+	BestValue             bool   `json:"bestValue,omitempty"`
 }
 
 type MeasuresComponentTreeObject struct {
