@@ -111,25 +111,28 @@ func (s *QualityProfilesService) ActivateRule(opt *QualityProfilesActivateRuleOp
 }
 
 type QualityProfilesActivateRulesOption struct {
-	Activation       string `url:"activation,omitempty"`        // Description:"Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.",ExampleValue:""
-	ActiveSeverities string `url:"active_severities,omitempty"` // Description:"Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
-	Asc              string `url:"asc,omitempty"`               // Description:"Ascending sort",ExampleValue:""
-	AvailableSince   string `url:"available_since,omitempty"`   // Description:"Filters rules added since date. Format is yyyy-MM-dd",ExampleValue:"2014-06-22"
-	Inheritance      string `url:"inheritance,omitempty"`       // Description:"Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.",ExampleValue:"INHERITED,OVERRIDES"
-	IsTemplate       string `url:"is_template,omitempty"`       // Description:"Filter template rules",ExampleValue:""
-	Languages        string `url:"languages,omitempty"`         // Description:"Comma-separated list of languages",ExampleValue:"java,js"
-	Q                string `url:"q,omitempty"`                 // Description:"UTF-8 search query",ExampleValue:"xpath"
-	Qprofile         string `url:"qprofile,omitempty"`          // Description:"Quality profile key to filter on. Used only if the parameter 'activation' is set.",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
-	Repositories     string `url:"repositories,omitempty"`      // Description:"Comma-separated list of repositories",ExampleValue:"checkstyle,findbugs"
-	RuleKey          string `url:"rule_key,omitempty"`          // Description:"Key of rule to search for",ExampleValue:"squid:S001"
-	S                string `url:"s,omitempty"`                 // Description:"Sort field",ExampleValue:"name"
-	Severities       string `url:"severities,omitempty"`        // Description:"Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
-	Statuses         string `url:"statuses,omitempty"`          // Description:"Comma-separated list of status codes",ExampleValue:"READY"
-	Tags             string `url:"tags,omitempty"`              // Description:"Comma-separated list of tags. Returned rules match any of the tags (OR operator)",ExampleValue:"security,java8"
-	TargetKey        string `url:"targetKey,omitempty"`         // Description:"Quality Profile key on which the rule activation is done. To retrieve a quality profile key please see <code>api/qualityprofiles/search</code>",ExampleValue:"AU-TpxcA-iU5OvuD2FL0"
-	TargetSeverity   string `url:"targetSeverity,omitempty"`    // Description:"Severity to set on the activated rules",ExampleValue:""
-	TemplateKey      string `url:"template_key,omitempty"`      // Description:"Key of the template rule to filter on. Used to search for the custom rules based on this template.",ExampleValue:"java:S001"
-	Types            string `url:"types,omitempty"`             // Description:"Comma-separated list of types. Returned rules match any of the tags (OR operator)",ExampleValue:"BUG"
+	Activation          string `url:"activation,omitempty"`          // Description:"Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.",ExampleValue:""
+	ActiveSeverities    string `url:"active_severities,omitempty"`   // Description:"Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
+	Asc                 string `url:"asc,omitempty"`                 // Description:"Ascending sort",ExampleValue:""
+	AvailableSince      string `url:"available_since,omitempty"`     // Description:"Filters rules added since date. Format is yyyy-MM-dd",ExampleValue:"2014-06-22"
+	Inheritance         string `url:"inheritance,omitempty"`         // Description:"Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.",ExampleValue:"INHERITED,OVERRIDES"
+	IsTemplate          string `url:"is_template,omitempty"`         // Description:"Filter template rules",ExampleValue:""
+	Languages           string `url:"languages,omitempty"`           // Description:"Comma-separated list of languages",ExampleValue:"java,js"
+	OwaspTop10          string `url:"owaspTop10,omitempty"`          // Description:"Comma-separated list of OWASP Top 10 lowercase categories.",ExampleValue:""
+	Q                   string `url:"q,omitempty"`                   // Description:"UTF-8 search query",ExampleValue:"xpath"
+	Qprofile            string `url:"qprofile,omitempty"`            // Description:"Quality profile key to filter on. Used only if the parameter 'activation' is set.",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
+	Repositories        string `url:"repositories,omitempty"`        // Description:"Comma-separated list of repositories",ExampleValue:"checkstyle,findbugs"
+	RuleKey             string `url:"rule_key,omitempty"`            // Description:"Key of rule to search for",ExampleValue:"squid:S001"
+	S                   string `url:"s,omitempty"`                   // Description:"Sort field",ExampleValue:"name"
+	SansTop25           string `url:"sansTop25,omitempty"`           // Description:"Comma-separated list of SANS Top 25 categories.",ExampleValue:"name"
+	Severities          string `url:"severities,omitempty"`          // Description:"Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
+	SonarsourceSecurity string `url:"sonarsourceSecurity,omitempty"` // Description:"Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category",ExampleValue:"CRITICAL,BLOCKER"
+	Statuses            string `url:"statuses,omitempty"`            // Description:"Comma-separated list of status codes",ExampleValue:"READY"
+	Tags                string `url:"tags,omitempty"`                // Description:"Comma-separated list of tags. Returned rules match any of the tags (OR operator)",ExampleValue:"security,java8"
+	TargetKey           string `url:"targetKey,omitempty"`           // Description:"Quality Profile key on which the rule activation is done. To retrieve a quality profile key please see <code>api/qualityprofiles/search</code>",ExampleValue:"AU-TpxcA-iU5OvuD2FL0"
+	TargetSeverity      string `url:"targetSeverity,omitempty"`      // Description:"Severity to set on the activated rules",ExampleValue:""
+	TemplateKey         string `url:"template_key,omitempty"`        // Description:"Key of the template rule to filter on. Used to search for the custom rules based on this template.",ExampleValue:"java:S001"
+	Types               string `url:"types,omitempty"`               // Description:"Comma-separated list of types. Returned rules match any of the tags (OR operator)",ExampleValue:"BUG"
 }
 
 // ActivateRules Bulk-activate rules on one quality profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
@@ -177,7 +180,9 @@ func (s *QualityProfilesService) AddProject(opt *QualityProfilesAddProjectOption
 }
 
 type QualityProfilesBackupOption struct {
-	ProfileKey string `url:"profileKey,omitempty"` // Description:"Quality profile key",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
+	Language       string `url:"language,omitempty"`       // Description:"Quality profile language.",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
+	QualityProfile string `url:"qualityProfile,omitempty"` // Description:"Quality profile name.",ExampleValue:"Sonar way"
+	ProfileKey     string `url:"profileKey,omitempty"`     // Description:"Quality profile key",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
 }
 
 // Backup Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore.
@@ -325,24 +330,27 @@ func (s *QualityProfilesService) DeactivateRule(opt *QualityProfilesDeactivateRu
 }
 
 type QualityProfilesDeactivateRulesOption struct {
-	Activation       string `url:"activation,omitempty"`        // Description:"Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.",ExampleValue:""
-	ActiveSeverities string `url:"active_severities,omitempty"` // Description:"Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
-	Asc              string `url:"asc,omitempty"`               // Description:"Ascending sort",ExampleValue:""
-	AvailableSince   string `url:"available_since,omitempty"`   // Description:"Filters rules added since date. Format is yyyy-MM-dd",ExampleValue:"2014-06-22"
-	Inheritance      string `url:"inheritance,omitempty"`       // Description:"Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.",ExampleValue:"INHERITED,OVERRIDES"
-	IsTemplate       string `url:"is_template,omitempty"`       // Description:"Filter template rules",ExampleValue:""
-	Languages        string `url:"languages,omitempty"`         // Description:"Comma-separated list of languages",ExampleValue:"java,js"
-	Q                string `url:"q,omitempty"`                 // Description:"UTF-8 search query",ExampleValue:"xpath"
-	Qprofile         string `url:"qprofile,omitempty"`          // Description:"Quality profile key to filter on. Used only if the parameter 'activation' is set.",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
-	Repositories     string `url:"repositories,omitempty"`      // Description:"Comma-separated list of repositories",ExampleValue:"checkstyle,findbugs"
-	RuleKey          string `url:"rule_key,omitempty"`          // Description:"Key of rule to search for",ExampleValue:"squid:S001"
-	S                string `url:"s,omitempty"`                 // Description:"Sort field",ExampleValue:"name"
-	Severities       string `url:"severities,omitempty"`        // Description:"Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
-	Statuses         string `url:"statuses,omitempty"`          // Description:"Comma-separated list of status codes",ExampleValue:"READY"
-	Tags             string `url:"tags,omitempty"`              // Description:"Comma-separated list of tags. Returned rules match any of the tags (OR operator)",ExampleValue:"security,java8"
-	TargetKey        string `url:"targetKey,omitempty"`         // Description:"Quality Profile key on which the rule deactivation is done. To retrieve a profile key please see <code>api/qualityprofiles/search</code>",ExampleValue:"AU-TpxcA-iU5OvuD2FL1"
-	TemplateKey      string `url:"template_key,omitempty"`      // Description:"Key of the template rule to filter on. Used to search for the custom rules based on this template.",ExampleValue:"java:S001"
-	Types            string `url:"types,omitempty"`             // Description:"Comma-separated list of types. Returned rules match any of the tags (OR operator)",ExampleValue:"BUG"
+	Activation          string `url:"activation,omitempty"`          // Description:"Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.",ExampleValue:""
+	ActiveSeverities    string `url:"active_severities,omitempty"`   // Description:"Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
+	Asc                 string `url:"asc,omitempty"`                 // Description:"Ascending sort",ExampleValue:""
+	AvailableSince      string `url:"available_since,omitempty"`     // Description:"Filters rules added since date. Format is yyyy-MM-dd",ExampleValue:"2014-06-22"
+	Inheritance         string `url:"inheritance,omitempty"`         // Description:"Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.",ExampleValue:"INHERITED,OVERRIDES"
+	IsTemplate          string `url:"is_template,omitempty"`         // Description:"Filter template rules",ExampleValue:""
+	Languages           string `url:"languages,omitempty"`           // Description:"Comma-separated list of languages",ExampleValue:"java,js"
+	OwaspTop10          string `url:"owaspTop10,omitempty"`          // Description:"Comma-separated list of OWASP Top 10 lowercase categories.",ExampleValue:""
+	Q                   string `url:"q,omitempty"`                   // Description:"UTF-8 search query",ExampleValue:"xpath"
+	Qprofile            string `url:"qprofile,omitempty"`            // Description:"Quality profile key to filter on. Used only if the parameter 'activation' is set.",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
+	Repositories        string `url:"repositories,omitempty"`        // Description:"Comma-separated list of repositories",ExampleValue:"checkstyle,findbugs"
+	RuleKey             string `url:"rule_key,omitempty"`            // Description:"Key of rule to search for",ExampleValue:"squid:S001"
+	S                   string `url:"s,omitempty"`                   // Description:"Sort field",ExampleValue:"name"
+	SansTop25           string `url:"sansTop25,omitempty"`           // Description:"Comma-separated list of SANS Top 25 categories.",ExampleValue:"name"
+	Severities          string `url:"severities,omitempty"`          // Description:"Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.",ExampleValue:"CRITICAL,BLOCKER"
+	SonarsourceSecurity string `url:"sonarsourceSecurity,omitempty"` // Description:"Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category",ExampleValue:"CRITICAL,BLOCKER"
+	Statuses            string `url:"statuses,omitempty"`            // Description:"Comma-separated list of status codes",ExampleValue:"READY"
+	Tags                string `url:"tags,omitempty"`                // Description:"Comma-separated list of tags. Returned rules match any of the tags (OR operator)",ExampleValue:"security,java8"
+	TargetKey           string `url:"targetKey,omitempty"`           // Description:"Quality Profile key on which the rule deactivation is done. To retrieve a profile key please see <code>api/qualityprofiles/search</code>",ExampleValue:"AU-TpxcA-iU5OvuD2FL1"
+	TemplateKey         string `url:"template_key,omitempty"`        // Description:"Key of the template rule to filter on. Used to search for the custom rules based on this template.",ExampleValue:"java:S001"
+	Types               string `url:"types,omitempty"`               // Description:"Comma-separated list of types. Returned rules match any of the tags (OR operator)",ExampleValue:"BUG"
 }
 
 // DeactivateRules Bulk deactivate rules on Quality profiles.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>

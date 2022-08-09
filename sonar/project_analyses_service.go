@@ -112,6 +112,7 @@ type ProjectAnalysesSearchOption struct {
 	Project  string `url:"project,omitempty"`  // Description:"Project key",ExampleValue:"my_project"
 	Ps       int    `url:"ps,omitempty"`       // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
 	To       string `url:"to,omitempty"`       // Description:"Filter analyses created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided",ExampleValue:"2017-10-19 or 2017-10-19T13:00:00+0200"
+	Branch   string `url:"branch,omitempty"`   // Description:"Branch key. Not available in the community edition.",ExampleValue:"feature/my_branch"
 }
 
 // Search Search a project analyses and attached events.<br>Requires the following permission: 'Browse' on the specified project

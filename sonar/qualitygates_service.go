@@ -90,6 +90,8 @@ type QualitygatesCopyOption struct {
 	Id           int    `url:"id,omitempty"`           // Description:"The ID of the source quality gate",ExampleValue:"1"
 	Name         string `url:"name,omitempty"`         // Description:"The name of the quality gate to create",ExampleValue:"My Quality Gate"
 	Organization string `url:"organization,omitempty"` // Description:"Organization key. If no organization is provided, the default organization is used.",ExampleValue:"my-org"
+	SourceName   string `url:"sourceName,omitempty"`   // Description:"The name of the quality gate to copy.",ExampleValue:"My Quality Gate"
+	CurrentName  string `url:"currentName,omitempty"`  // Description:"Current name of the quality gate",ExampleValue:"My Quality Gate"
 }
 
 // Copy Copy a Quality Gate.<br>Requires the 'Administer Quality Gates' permission.
@@ -209,6 +211,7 @@ func (s *QualitygatesService) Deselect(opt *QualitygatesDeselectOption) (resp *h
 type QualitygatesDestroyOption struct {
 	Id           int    `url:"id,omitempty"`           // Description:"ID of the quality gate to delete",ExampleValue:"1"
 	Organization string `url:"organization,omitempty"` // Description:"Organization key. If no organization is provided, the default organization is used.",ExampleValue:"my-org"
+	Name         string `url:"name,omitempty"`         // Description:"Name of the quality gate to delete",ExampleValue:"SonarSource Way"
 }
 
 // Destroy Delete a Quality Gate.<br>Requires the 'Administer Quality Gates' permission.
@@ -274,9 +277,11 @@ func (s *QualitygatesService) List(opt *QualitygatesListOption) (v *Qualitygates
 }
 
 type QualitygatesProjectStatusOption struct {
-	AnalysisId string `url:"analysisId,omitempty"` // Description:"Analysis id",ExampleValue:"AU-TpxcA-iU5OvuD2FL1"
-	ProjectId  string `url:"projectId,omitempty"`  // Description:"Project id",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
-	ProjectKey string `url:"projectKey,omitempty"` // Description:"Project key",ExampleValue:"my_project"
+	AnalysisId  string `url:"analysisId,omitempty"`  // Description:"Analysis id",ExampleValue:"AU-TpxcA-iU5OvuD2FL1"
+	Branch      string `url:"branch,omitempty"`      // Description:"Branch key. Not available in the community edition.",ExampleValue:"feature/my_branch"
+	ProjectId   string `url:"projectId,omitempty"`   // Description:"Project id",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
+	ProjectKey  string `url:"projectKey,omitempty"`  // Description:"Project key",ExampleValue:"my_project"
+	PullRequest string `url:"pullRequest,omitempty"` // Description:"Pull request id",ExampleValue:"5461"
 }
 
 // ProjectStatus Get the quality gate status of a project or a Compute Engine task.<br />Either 'analysisId', 'projectId' or 'projectKey' must be provided<br />The different statuses returned are: OK, WARN, ERROR, NONE. The NONE status is returned when there is no quality gate associated with the analysis.<br />Returns an HTTP code 404 if the analysis associated with the task is not found or does not exist.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>
@@ -298,6 +303,11 @@ func (s *QualitygatesService) ProjectStatus(opt *QualitygatesProjectStatusOption
 }
 
 type QualitygatesRenameOption QualitygatesCopyOption
+
+//type QualitygatesRenameOption struct {
+//	CurrentName string `url:"currentName,omitempty"` // Description:"Current name of the quality gate",ExampleValue:"My Quality Gate"
+//	Name        string `url:"name,omitempty"`        // Description:"New name of the quality gate",ExampleValue:"My New Quality Gate"
+//}
 
 // Rename Rename a Quality Gate.<br>Requires the 'Administer Quality Gates' permission.
 func (s *QualitygatesService) Rename(opt *QualitygatesRenameOption) (v *QualityGate, resp *http.Response, err error) {
@@ -345,6 +355,7 @@ func (s *QualitygatesService) Search(opt *QualitygatesSearchOption) (v *Qualityg
 }
 
 type QualitygatesSelectOption struct {
+	GateName     string `url:"gateName,omitempty"`     // Description:"Quality Gate name",ExampleValue:"SonarSource Way"
 	GateId       int    `url:"gateId,omitempty"`       // Description:"Quality gate id",ExampleValue:"1"
 	Organization string `url:"organization,omitempty"` // Description:"Organization key. If no organization is provided, the default organization is used.",ExampleValue:"my-org"
 	ProjectKey   string `url:"projectKey,omitempty"`   // Description:"Project key",ExampleValue:"my_project"

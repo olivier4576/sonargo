@@ -1,12 +1,12 @@
 package sonargo_test
 
 import (
-	. "github.com/magicsong/sonargo/sonar"
+	. "github.com/cthackers/sonargo/sonar"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
 
-//only available in commercial edition
+// only available in commercial edition
 var _ = XDescribe("SonarCLI integration test", func() {
 	BeforeEach(func() {})
 	JustBeforeEach(func() {})

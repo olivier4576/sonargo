@@ -94,6 +94,7 @@ type MeasuresComponentTreeOption struct {
 	Qualifiers       string `url:"qualifiers,omitempty"`       // Description:"Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>BRC - Sub-projects</li><li>DIR - Directories</li><li>FIL - Files</li><li>TRK - Projects</li><li>UTS - Test Files</li></ul>",ExampleValue:""
 	S                string `url:"s,omitempty"`                // Description:"Comma-separated list of sort fields",ExampleValue:"name,path"
 	Strategy         string `url:"strategy,omitempty"`         // Description:"Strategy to search for base component descendants:<ul><li>children: return the children components of the base component. Grandchildren components are not returned</li><li>all: return all the descendants components of the base component. Grandchildren are returned.</li><li>leaves: return all the descendant components (files, in general) which don't have other children. They are the leaves of the component tree.</li></ul>",ExampleValue:""
+	Branch           string `url:"branch,omitempty"`           // Description:"Branch key. Not available in the community edition.",ExampleValue:"feature/my_branch"
 }
 
 // ComponentTree Navigate through components based on the chosen strategy with specified measures. The baseComponentId or the component parameter must be provided.<br>Requires the following permission: 'Browse' on the specified project.<br>When limiting search with the q parameter, directories are not returned.
@@ -121,6 +122,7 @@ type MeasuresSearchHistoryOption struct {
 	P         string `url:"p,omitempty"`         // Description:"1-based page number",ExampleValue:"42"
 	Ps        string `url:"ps,omitempty"`        // Description:"Page size. Must be greater than 0 and less or equal than 1000",ExampleValue:"20"
 	To        string `url:"to,omitempty"`        // Description:"Filter measures created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided",ExampleValue:"2017-10-19 or 2017-10-19T13:00:00+0200"
+	Branch    string `url:"branch,omitempty"`    // Description:"Branch key. Not available in the community edition.",ExampleValue:"feature/my_branch"
 }
 
 // SearchHistory Search measures history of a component.<br>Measures are ordered chronologically.<br>Pagination applies to the number of measures for each metric.<br>Requires the following permission: 'Browse' on the specified component

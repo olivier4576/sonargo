@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
+	. "github.com/cthackers/sonargo/sonar"
+	"github.com/davecgh/go-spew/spew"
 	"io"
 	"io/ioutil"
 	"os"
-
-	spew "github.com/davecgh/go-spew/spew"
-	. "github.com/magicsong/sonargo/sonar"
 )
 
 var client *Client
@@ -31,9 +30,8 @@ func init() {
 func main() {
 	// RulesCreateFunc()
 	// PermissionsSearchTemplatesFunc()
-	//RulesDeleteFunc()
+	// RulesDeleteFunc()
 	// RulesUpdateFunc()
-	QualityProfilesBackupFunc()
 	return
 }
 
@@ -1507,9 +1505,7 @@ func QualitygatesProjectStatusFunc() {
 // QualitygatesRenameFunc testing Rename a Quality Gate.<br>Requires the 'Administer Quality Gates' permission.
 func QualitygatesRenameFunc() {
 	opt := &QualitygatesRenameOption{
-		Id:           0,
-		Name:         "MUST_EDIT_IT",
-		Organization: "",
+		Name: "MUST_EDIT_IT",
 	}
 	_, resp, err := client.Qualitygates.Rename(opt)
 	if err != nil {
@@ -1570,9 +1566,8 @@ func QualitygatesSetAsDefaultFunc() {
 // QualitygatesShowFunc testing Display the details of a quality gate
 func QualitygatesShowFunc() {
 	opt := &QualitygatesShowOption{
-		Id:           0,
-		Name:         "",
-		Organization: "",
+		Id:   "",
+		Name: "",
 	}
 	v, resp, err := client.Qualitygates.Show(opt)
 	if err != nil {
@@ -1665,21 +1660,6 @@ func QualityProfilesAddProjectFunc() {
 		os.Exit(1)
 	}
 	fmt.Println(resp.StatusCode)
-}
-
-// QualityProfilesBackupFunc testing Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore.
-func QualityProfilesBackupFunc() {
-	//http://192.168.98.8:9000/api/qualityprofiles/backup?profileKey=AWdZhiracZBxYk_CF_We
-	opt := &QualityProfilesBackupOption{
-		ProfileKey: "AWdZhiracZBxYk_CF_We",
-	}
-	v, resp, err := client.QualityProfiles.Backup(opt)
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
-	fmt.Println(resp.StatusCode)
-	spew.Dump(v)
 }
 
 // QualityProfilesChangeParentFunc testing Change a quality profile's parent.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
@@ -1924,16 +1904,6 @@ func QualityProfilesRestoreFunc() {
 	fmt.Println(resp.StatusCode)
 }
 
-// QualityProfilesRestoreBuiltInFunc testing This web service has no effect since 6.4. It's no more possible to restore built-in quality profiles because they are automatically updated and read only. Returns HTTP code 410.
-func QualityProfilesRestoreBuiltInFunc() {
-	resp, err := client.QualityProfiles.RestoreBuiltIn()
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
-	fmt.Println(resp.StatusCode)
-}
-
 // QualityProfilesSearchFunc testing Search quality profiles
 func QualityProfilesSearchFunc() {
 	opt := &QualityProfilesSearchOption{
@@ -2083,10 +2053,10 @@ func RulesTagsFunc() {
 // RulesUpdateFunc testing Update an existing rule.<br>Requires the 'Administer Quality Profiles' permission
 func RulesUpdateFunc() {
 	opt := &RulesUpdateOption{
-		DebtRemediationFnOffset: "",
-		DebtRemediationFnType:   "",
-		DebtRemediationFyCoeff:  "",
-		DebtSubCharacteristic:   "",
+		DebtRemediationFnOffset:    "",
+		DebtRemediationFnType:      "",
+		DebtRemediationFyCoeff:     "",
+		DebtSubCharacteristic:      "",
 		Key:                        "squid:magic_test_rule1",
 		MarkdownDescription:        "",
 		MarkdownNote:               "",

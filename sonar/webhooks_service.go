@@ -8,6 +8,7 @@ type WebhooksService struct {
 }
 
 type WebhooksCreateObject struct {
+	Secret  string   `url:"secret,omitempty"` // Description:"If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header",ExampleValue:"your_secret"
 	Webhook *Webhook `json:"webhook,omitempty"`
 }
 
@@ -161,6 +162,7 @@ func (s *WebhooksService) List(opt *WebhooksListOption) (v *WebhooksListObject, 
 }
 
 type WebhooksUpdateOption struct {
+	Secret  string `url:"secret,omitempty"`  // Description:"If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header",ExampleValue:"your_secret"
 	Name    string `url:"name,omitempty"`    // Description:"new name of the webhook",ExampleValue:"My Webhook"
 	Url     string `url:"url,omitempty"`     // Description:"new url to be called by the webhook",ExampleValue:"https://www.my-webhook-listener.com/sonar"
 	Webhook string `url:"webhook,omitempty"` // Description:"The key of the webhook to be updated,auto-generated value can be obtained through api/webhooks/create or api/webhooks/list",ExampleValue:"my_project"

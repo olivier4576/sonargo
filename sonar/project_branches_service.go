@@ -32,6 +32,29 @@ type ProjectBranchesDeleteOption struct {
 	Project string `url:"project,omitempty"` // Description:"Project key",ExampleValue:"my_project"
 }
 
+type ProjectBranchesSetAutomaticDeletionProtectionOption struct {
+	Branch  string `url:"branch,omitempty"`  // Description:"Branch key",ExampleValue:"feature/my_branch"
+	Project string `url:"project,omitempty"` // Description:"Project key",ExampleValue:"my_project"
+	Value   string `url:"value,omitempty"`   //Description:"Sets whether the branch should be protected from automatic deletion when it hasn't been analyzed for a set period of time.",ExampleValue:"true"
+}
+
+// SetAutomaticDeletionProtection Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.<br/>Requires 'Administer' permission on the specified project.
+func (s *ProjectBranchesService) SetAutomaticDeletionProtection(opt *ProjectBranchesRenameOption) (resp *http.Response, err error) {
+	err = s.ValidateRenameOpt(opt)
+	if err != nil {
+		return
+	}
+	req, err := s.client.NewRequest("POST", "project_branches/set_automatic_deletion_protection", opt)
+	if err != nil {
+		return
+	}
+	resp, err = s.client.Do(req, nil)
+	if err != nil {
+		return
+	}
+	return
+}
+
 // Delete Delete a non-main branch of a project.<br/>Requires 'Administer' rights on the specified project.
 func (s *ProjectBranchesService) Delete(opt *ProjectBranchesDeleteOption) (resp *http.Response, err error) {
 	err = s.ValidateDeleteOpt(opt)

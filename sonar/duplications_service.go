@@ -10,6 +10,7 @@ type DuplicationsService struct {
 type DuplicationsShowObject struct {
 	Duplications []*Duplication `json:"duplications,omitempty"`
 	Files        *Files         `json:"files,omitempty"`
+	// Files        map[string]*File `json:"files,omitempty"`
 }
 
 type Block struct {

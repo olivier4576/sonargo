@@ -88,10 +88,11 @@ func (s *ProjectsService) BulkUpdateKey(opt *ProjectsBulkUpdateKeyOption) (v *Pr
 }
 
 type ProjectsCreateOption struct {
-	Branch     string `url:"branch,omitempty"`     // Description:"SCM Branch of the project. The key of the project will become key:branch, for instance 'SonarQube:branch-5.0'",ExampleValue:"branch-5.0"
-	Name       string `url:"name,omitempty"`       // Description:"Name of the project",ExampleValue:"SonarQube"
-	Project    string `url:"project,omitempty"`    // Description:"Key of the project",ExampleValue:"my_project"
-	Visibility string `url:"visibility,omitempty"` // Description:"Whether the created project should be visible to everyone, or only specific user/groups.<br/>If no visibility is specified, the default project visibility of the organization will be used.",ExampleValue:""
+	Organization string `url:"organization"`
+	Branch       string `url:"branch,omitempty"`     // Description:"SCM Branch of the project. The key of the project will become key:branch, for instance 'SonarQube:branch-5.0'",ExampleValue:"branch-5.0"
+	Name         string `url:"name"`                 // Description:"Name of the project",ExampleValue:"SonarQube"
+	Project      string `url:"project"`              // Description:"Key of the project",ExampleValue:"my_project"
+	Visibility   string `url:"visibility,omitempty"` // Description:"Whether the created project should be visible to everyone, or only specific user/groups.<br/>If no visibility is specified, the default project visibility of the organization will be used.",ExampleValue:""
 }
 
 // Create Create a project.<br/>Requires 'Create Projects' permission
@@ -113,8 +114,9 @@ func (s *ProjectsService) Create(opt *ProjectsCreateOption) (v *ProjectsCreateOb
 }
 
 type ProjectsDeleteOption struct {
-	Project   string `url:"project,omitempty"`   // Description:"Project key",ExampleValue:"my_project"
-	ProjectId string `url:"projectId,omitempty"` // Description:"Project ID",ExampleValue:"ce4c03d6-430f-40a9-b777-ad877c00aa4d"
+	Organization string `url:"organization"`
+	Project      string `url:"project,omitempty"`   // Description:"Project key",ExampleValue:"my_project"
+	ProjectId    string `url:"projectId,omitempty"` // Description:"Project ID",ExampleValue:"ce4c03d6-430f-40a9-b777-ad877c00aa4d"
 }
 
 // Delete Delete a project.<br> Requires 'Administer System' permission or 'Administer' permission on the project.
@@ -143,6 +145,7 @@ type ProjectsSearchOption struct {
 	Ps                string `url:"ps,omitempty"`                // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
 	Q                 string `url:"q,omitempty"`                 // Description:"Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that contain the supplied string</li></ul>",ExampleValue:"sonar"
 	Qualifiers        string `url:"qualifiers,omitempty"`        // Description:"Comma-separated list of component qualifiers. Filter the results with the specified qualifiers",ExampleValue:""
+	Organization      string `url:"organization"`
 }
 type ProjectSearchObject ComponentsSearchObject
 

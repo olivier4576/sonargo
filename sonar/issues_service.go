@@ -19,6 +19,15 @@ const (
 	IssueTypeVulnerability = "VULNERABILITY"
 )
 
+type IssueFacet struct {
+	Property string             `json:"property,omitempty"`
+	Values   []*IssueFacetValue `json:"values,omitempty"`
+}
+type IssueFacetValue struct {
+	Val   string `json:"val,omitempty"`
+	Count int    `json:"count,omitempty"`
+}
+
 type IssuesAddCommentObject struct {
 	Components []*Component `json:"components,omitempty"`
 	Issue      *Issue       `json:"issue,omitempty"`
@@ -27,17 +36,17 @@ type IssuesAddCommentObject struct {
 }
 
 type IssuesSearchObject struct {
-	Components  []*Component `json:"components,omitempty"`
-	EffortTotal int          `json:"effortTotal,omitempty"`
-	DebtTotal   int          `json:"debtTotal,omitempty"`
-	Issues      []*Issue     `json:"issues,omitempty"`
-	P           int          `json:"p,omitempty"`
-	Ps          int          `json:"ps,omitempty"`
-	Paging      *Paging      `json:"paging,omitempty"`
-	Rules       []*Rule      `json:"rules,omitempty"`
-	Total       int          `json:"total,omitempty"`
-	Users       []*User      `json:"users,omitempty"`
-	Facets      []string     `json:"facets,omitempty"`
+	Components  []*Component  `json:"components,omitempty"`
+	EffortTotal int           `json:"effortTotal,omitempty"`
+	DebtTotal   int           `json:"debtTotal,omitempty"`
+	Issues      []*Issue      `json:"issues,omitempty"`
+	P           int           `json:"p,omitempty"`
+	Ps          int           `json:"ps,omitempty"`
+	Paging      *Paging       `json:"paging,omitempty"`
+	Rules       []*Rule       `json:"rules,omitempty"`
+	Total       int           `json:"total,omitempty"`
+	Users       []*User       `json:"users,omitempty"`
+	Facets      []*IssueFacet `json:"facets,omitempty"`
 }
 
 type Comment struct {
@@ -166,8 +175,9 @@ func (s *IssuesService) Assign(opt *IssuesAssignOption) (v *IssuesAddCommentObje
 }
 
 type IssuesAuthorsOption struct {
-	Ps int    `url:"ps,omitempty"` // Description:"The size of the list to return",ExampleValue:"25"
-	Q  string `url:"q,omitempty"`  // Description:"A pattern to match SCM accounts against",ExampleValue:"luke"
+	Project string `url:"project,omitempty"` // Description:"Project key",ExampleValue:"my_project"
+	Ps      int    `url:"ps,omitempty"`      // Description:"The size of the list to return",ExampleValue:"25"
+	Q       string `url:"q,omitempty"`       // Description:"A pattern to match SCM accounts against",ExampleValue:"luke"
 }
 
 // Authors Search SCM accounts which match a given query
@@ -310,33 +320,39 @@ func (s *IssuesService) EditComment(opt *IssuesEditCommentOption) (v *IssuesAddC
 }
 
 type IssuesSearchOption struct {
-	AdditionalFields   string `url:"additionalFields,omitempty"`   // Description:"Comma-separated list of the optional fields to be returned in response. Action plans are dropped in 5.5, it is not returned in the response.",ExampleValue:""
-	Asc                string `url:"asc,omitempty"`                // Description:"Ascending sort",ExampleValue:""
-	Assigned           string `url:"assigned,omitempty"`           // Description:"To retrieve assigned or unassigned issues",ExampleValue:""
-	Assignees          string `url:"assignees,omitempty"`          // Description:"Comma-separated list of assignee logins. The value '__me__' can be used as a placeholder for user who performs the request",ExampleValue:"admin,usera,__me__"
-	Authors            string `url:"authors,omitempty"`            // Description:"Comma-separated list of SCM accounts",ExampleValue:"torvalds@linux-foundation.org"
-	ComponentKeys      string `url:"componentKeys,omitempty"`      // Description:"Comma-separated list of component keys. Retrieve issues associated to a specific list of components (and all its descendants). A component can be a portfolio, project, module, directory or file.",ExampleValue:"my_project"
-	ComponentRootUuids string `url:"componentRootUuids,omitempty"` // Description:"If used, will have the same meaning as componentUuids AND onComponentOnly=false.",ExampleValue:""
-	ComponentRoots     string `url:"componentRoots,omitempty"`     // Description:"If used, will have the same meaning as componentKeys AND onComponentOnly=false.",ExampleValue:""
-	ComponentUuids     string `url:"componentUuids,omitempty"`     // Description:"To retrieve issues associated to a specific list of components their sub-components (comma-separated list of component IDs). This parameter is mostly used by the Issues page, please prefer usage of the componentKeys parameter. A component can be a project, module, directory or file.",ExampleValue:"584a89f2-8037-4f7b-b82c-8b45d2d63fb2"
-	Components         string `url:"components,omitempty"`         // Description:"If used, will have the same meaning as componentKeys AND onComponentOnly=true.",ExampleValue:""
-	CreatedAfter       string `url:"createdAfter,omitempty"`       // Description:"To retrieve issues created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided. <br>If this parameter is set, createdSince must not be set",ExampleValue:"2017-10-19 or 2017-10-19T13:00:00+0200"
-	CreatedAt          string `url:"createdAt,omitempty"`          // Description:"Datetime to retrieve issues created during a specific analysis",ExampleValue:"2017-10-19T13:00:00+0200"
-	CreatedBefore      string `url:"createdBefore,omitempty"`      // Description:"To retrieve issues created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided.",ExampleValue:"2017-10-19 or 2017-10-19T13:00:00+0200"
-	CreatedInLast      string `url:"createdInLast,omitempty"`      // Description:"To retrieve issues created during a time span before the current time (exclusive). Accepted units are 'y' for year, 'm' for month, 'w' for week and 'd' for day. If this parameter is set, createdAfter must not be set",ExampleValue:"1m2w (1 month 2 weeks)"
-	Issues             string `url:"issues,omitempty"`             // Description:"Comma-separated list of issue keys",ExampleValue:"5bccd6e8-f525-43a2-8d76-fcb13dde79ef"
-	Languages          string `url:"languages,omitempty"`          // Description:"Comma-separated list of languages. Available since 4.4",ExampleValue:"java,js"
-	P                  string `url:"p,omitempty"`                  // Description:"1-based page number",ExampleValue:"42"
-	Ps                 string `url:"ps,omitempty"`                 // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
-	Resolutions        string `url:"resolutions,omitempty"`        // Description:"Comma-separated list of resolutions",ExampleValue:"FIXED,REMOVED"
-	Resolved           string `url:"resolved,omitempty"`           // Description:"To match resolved or unresolved issues",ExampleValue:""
-	Rules              string `url:"rules,omitempty"`              // Description:"Comma-separated list of coding rule keys. Format is &lt;repository&gt;:&lt;rule&gt;",ExampleValue:"squid:AvoidCycles"
-	S                  string `url:"s,omitempty"`                  // Description:"Sort field",ExampleValue:""
-	Severities         string `url:"severities,omitempty"`         // Description:"Comma-separated list of severities",ExampleValue:"BLOCKER,CRITICAL"
-	SinceLeakPeriod    string `url:"sinceLeakPeriod,omitempty"`    // Description:"To retrieve issues created since the leak period.<br>If this parameter is set to a truthy value, createdAfter must not be set and one component id or key must be provided.",ExampleValue:""
-	Statuses           string `url:"statuses,omitempty"`           // Description:"Comma-separated list of statuses",ExampleValue:"OPEN,REOPENED"
-	Tags               string `url:"tags,omitempty"`               // Description:"Comma-separated list of tags.",ExampleValue:"security,convention"
-	Types              string `url:"types,omitempty"`              // Description:"Comma-separated list of types.",ExampleValue:"CODE_SMELL,BUG"
+	AdditionalFields    string `url:"additionalFields,omitempty"`    // Description:"Comma-separated list of the optional fields to be returned in response. Action plans are dropped in 5.5, it is not returned in the response.",ExampleValue:""
+	Asc                 string `url:"asc,omitempty"`                 // Description:"Ascending sort",ExampleValue:""
+	Assigned            string `url:"assigned,omitempty"`            // Description:"To retrieve assigned or unassigned issues",ExampleValue:""
+	Assignees           string `url:"assignees,omitempty"`           // Description:"Comma-separated list of assignee logins. The value '__me__' can be used as a placeholder for user who performs the request",ExampleValue:"admin,usera,__me__"
+	Authors             string `url:"authors,omitempty"`             // Description:"Comma-separated list of SCM accounts",ExampleValue:"torvalds@linux-foundation.org"
+	Branch              string `url:"branch,omitempty"`              // Description:"Branch key. Not available in the community edition.",ExampleValue:"feature/my_branch"
+	ComponentKeys       string `url:"componentKeys,omitempty"`       // Description:"Comma-separated list of component keys. Retrieve issues associated to a specific list of components (and all its descendants). A component can be a portfolio, project, module, directory or file.",ExampleValue:"my_project"
+	ComponentRootUuids  string `url:"componentRootUuids,omitempty"`  // Description:"If used, will have the same meaning as componentUuids AND onComponentOnly=false.",ExampleValue:""
+	ComponentRoots      string `url:"componentRoots,omitempty"`      // Description:"If used, will have the same meaning as componentKeys AND onComponentOnly=false.",ExampleValue:""
+	ComponentUuids      string `url:"componentUuids,omitempty"`      // Description:"To retrieve issues associated to a specific list of components their sub-components (comma-separated list of component IDs). This parameter is mostly used by the Issues page, please prefer usage of the componentKeys parameter. A component can be a project, module, directory or file.",ExampleValue:"584a89f2-8037-4f7b-b82c-8b45d2d63fb2"
+	Components          string `url:"components,omitempty"`          // Description:"If used, will have the same meaning as componentKeys AND onComponentOnly=true.",ExampleValue:""
+	CreatedAfter        string `url:"createdAfter,omitempty"`        // Description:"To retrieve issues created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided. <br>If this parameter is set, createdSince must not be set",ExampleValue:"2017-10-19 or 2017-10-19T13:00:00+0200"
+	CreatedAt           string `url:"createdAt,omitempty"`           // Description:"Datetime to retrieve issues created during a specific analysis",ExampleValue:"2017-10-19T13:00:00+0200"
+	CreatedBefore       string `url:"createdBefore,omitempty"`       // Description:"To retrieve issues created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided.",ExampleValue:"2017-10-19 or 2017-10-19T13:00:00+0200"
+	CreatedInLast       string `url:"createdInLast,omitempty"`       // Description:"To retrieve issues created during a time span before the current time (exclusive). Accepted units are 'y' for year, 'm' for month, 'w' for week and 'd' for day. If this parameter is set, createdAfter must not be set",ExampleValue:"1m2w (1 month 2 weeks)"
+	Issues              string `url:"issues,omitempty"`              // Description:"Comma-separated list of issue keys",ExampleValue:"5bccd6e8-f525-43a2-8d76-fcb13dde79ef"
+	Languages           string `url:"languages,omitempty"`           // Description:"Comma-separated list of languages. Available since 4.4",ExampleValue:"java,js"
+	P                   string `url:"p,omitempty"`                   // Description:"1-based page number",ExampleValue:"42"
+	Ps                  string `url:"ps,omitempty"`                  // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
+	Resolutions         string `url:"resolutions,omitempty"`         // Description:"Comma-separated list of resolutions",ExampleValue:"FIXED,REMOVED"
+	Resolved            string `url:"resolved,omitempty"`            // Description:"To match resolved or unresolved issues",ExampleValue:""
+	Rules               string `url:"rules,omitempty"`               // Description:"Comma-separated list of coding rule keys. Format is &lt;repository&gt;:&lt;rule&gt;",ExampleValue:"squid:AvoidCycles"
+	S                   string `url:"s,omitempty"`                   // Description:"Sort field",ExampleValue:""
+	SansTop25           string `url:"sansTop25,omitempty"`           // Description:"Comma-separated list of SANS Top 25 categories.",ExampleValue:""
+	Scopes              string `url:"scopes,omitempty"`              // Description:"Comma-separated list of scopes. Available since 8.5",ExampleValue:"MAIN,TEST"
+	Severities          string `url:"severities,omitempty"`          // Description:"Comma-separated list of severities",ExampleValue:"BLOCKER,CRITICAL"
+	SinceLeakPeriod     string `url:"sinceLeakPeriod,omitempty"`     // Description:"To retrieve issues created since the leak period.<br>If this parameter is set to a truthy value, createdAfter must not be set and one component id or key must be provided.",ExampleValue:""
+	SonarsourceSecurity string `url:"sonarsourceSecurity,omitempty"` // Description:"Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category",ExampleValue:""
+	Statuses            string `url:"statuses,omitempty"`            // Description:"Comma-separated list of statuses",ExampleValue:"OPEN,REOPENED"
+	Tags                string `url:"tags,omitempty"`                // Description:"Comma-separated list of tags.",ExampleValue:"security,convention"
+	TimeZone            string `url:"timeZone,omitempty"`            // Description:"To resolve dates passed to 'createdAfter' or 'createdBefore' (does not apply to datetime) and to compute creation date histogram",ExampleValue:"'Europe/Paris', 'Z' or '+02:00'"
+	Types               string `url:"types,omitempty"`               // Description:"Comma-separated list of types.",ExampleValue:"CODE_SMELL,BUG"
+	Facets              string `url:"facets,omitempty"`              // Description:"Comma-separated list of the facets to be computed. No facet is computed by default.",ExampleValue:"severities,types"
 }
 
 // Search Search for issues.<br>At most one of the following parameters can be provided at the same time: componentKeys, componentUuids, components, componentRootUuids, componentRoots.<br>Requires the 'Browse' permission on the specified project(s).
@@ -427,8 +443,9 @@ func (s *IssuesService) SetType(opt *IssuesSetTypeOption) (v *IssuesAddCommentOb
 }
 
 type IssuesTagsOption struct {
-	Ps int    `url:"ps,omitempty"` // Description:"Page size. Must be greater than 0 and less or equal than 100",ExampleValue:"20"
-	Q  string `url:"q,omitempty"`  // Description:"Limit search to tags that contain the supplied string.",ExampleValue:"misra"
+	Project string `url:"project,omitempty"` // Description:"Project key",ExampleValue:"my_project"
+	Ps      int    `url:"ps,omitempty"`      // Description:"Page size. Must be greater than 0 and less or equal than 100",ExampleValue:"20"
+	Q       string `url:"q,omitempty"`       // Description:"Limit search to tags that contain the supplied string.",ExampleValue:"misra"
 }
 
 // Tags List tags matching a given query

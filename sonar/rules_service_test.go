@@ -3,7 +3,7 @@ package sonargo_test
 import (
 	"strings"
 
-	. "github.com/magicsong/sonargo/sonar"
+	. "github.com/cthackers/sonargo/sonar"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -122,10 +122,10 @@ var _ = Describe("SonarCLI integration test", func() {
 		It("Should be ok", func() {
 			key := createRule("magic_test_rule")
 			opt := &RulesUpdateOption{
-				DebtRemediationFnOffset: "",
-				DebtRemediationFnType:   "",
-				DebtRemediationFyCoeff:  "",
-				DebtSubCharacteristic:   "",
+				DebtRemediationFnOffset:    "",
+				DebtRemediationFnType:      "",
+				DebtRemediationFyCoeff:     "",
+				DebtSubCharacteristic:      "",
 				Key:                        key,
 				MarkdownDescription:        "",
 				MarkdownNote:               "",

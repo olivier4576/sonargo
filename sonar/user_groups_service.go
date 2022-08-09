@@ -150,6 +150,7 @@ func (s *UserGroupsService) Search(opt *UserGroupsSearchOption) (v *UserGroupsSe
 }
 
 type UserGroupsUpdateOption struct {
+	CurrentName string `url:"currentName,omitempty"` // Description:"Name of the group to be updated. Mandatory unless 'id' is used.",ExampleValue:"AU-Tpxb--iU5OvuD2FLy"
 	Description string `url:"description,omitempty"` // Description:"New optional description for the group. A group description cannot be larger than 200 characters. If value is not defined, then description is not changed.",ExampleValue:"Default group for new users"
 	Id          int    `url:"id,omitempty"`          // Description:"Identifier of the group.",ExampleValue:"42"
 	Name        string `url:"name,omitempty"`        // Description:"New optional name for the group. A group name cannot be larger than 255 characters and must be unique. Value 'anyone' (whatever the case) is reserved and cannot be used. If value is empty or not defined, then name is not changed.",ExampleValue:"my-group"
