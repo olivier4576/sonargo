@@ -22,6 +22,7 @@ type Component struct {
 	Description      string          `json:"description,omitempty"`
 	Enabled          bool            `json:"enabled,omitempty"`
 	ID               string          `json:"id,omitempty"`
+	IsFavorite       bool            `json:"isFavorite,omitempty"`
 	Key              string          `json:"key,omitempty"`
 	Language         string          `json:"language,omitempty"`
 	LastAnalysisDate string          `json:"lastAnalysisDate,omitempty"`
@@ -32,11 +33,14 @@ type Component struct {
 	Organization     string          `json:"organization,omitempty"`
 	Path             string          `json:"path,omitempty"`
 	Project          string          `json:"project,omitempty"`
+	PullRequest      string          `json:"pullRequest,omitempty"`
 	Qualifier        string          `json:"qualifier,omitempty"`
 	Tags             []string        `json:"tags,omitempty"`
 	UUID             string          `json:"uuid,omitempty"`
 	Version          string          `json:"version,omitempty"`
 	Visibility       string          `json:"visibility,omitempty"`
+	Revision         string          `json:"revision,omitempty"`
+	NeedIssueSync    bool            `json:"needIssueSync,omitempty"`
 }
 
 type ComponentsTreeObject struct {

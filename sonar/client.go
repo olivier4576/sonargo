@@ -26,6 +26,8 @@ type Client struct {
 	ProjectBranches           *ProjectBranchesService
 	ProjectLinks              *ProjectLinksService
 	ProjectPullRequests       *ProjectPullRequestsService
+	AlmSettings               *AlmSettingsService
+	AlmIntegrations           *AlmIntegrationsService
 	ProjectTags               *ProjectTagsService
 	Projects                  *ProjectsService
 	Qualitygates              *QualitygatesService
@@ -70,6 +72,7 @@ func NewClient(endpoint, username, password string) (*Client, error) {
 	c.Projects = &ProjectsService{client: c}
 	c.Qualitygates = &QualitygatesService{client: c}
 	c.QualityProfiles = &QualityProfilesService{client: c}
+	c.AlmSettings = &AlmSettingsService{client: c}
 	c.Rules = &RulesService{client: c}
 	c.Server = &ServerService{client: c}
 	c.Settings = &SettingsService{client: c}

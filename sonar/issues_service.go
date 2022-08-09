@@ -76,6 +76,7 @@ type Issue struct {
 	FromHotspot  bool          `json:"fromHotspot,omitempty"`
 	Resolution   string        `json:"resolution,omitempty"`
 	CloseDate    string        `json:"closeDate,omitempty"`
+	Scope        string        `json:"scope,omitempty"`
 }
 
 type TextRange struct {

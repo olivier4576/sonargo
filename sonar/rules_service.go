@@ -8,26 +8,29 @@ type RulesService struct {
 }
 
 type Rule struct {
-	Key             string       `json:"key,omitempty"`
-	Repo            string       `json:"repo,omitempty"`
-	Name            string       `json:"name,omitempty"`
-	CreatedAt       string       `json:"createdAt,omitempty"`
-	HTMLDesc        string       `json:"htmlDesc,omitempty"`
-	MdDesc          string       `json:"mdDesc,omitempty"`
-	Severity        string       `json:"severity,omitempty"`
-	Status          string       `json:"status,omitempty"`
-	IsTemplate      bool         `json:"isTemplate,omitempty"`
-	TemplateKey     string       `json:"templateKey,omitempty"`
-	Tags            []string     `json:"tags,omitempty"`
-	SysTags         []string     `json:"sysTags,omitempty"`
-	Lang            string       `json:"lang,omitempty"`
-	LangName        string       `json:"langName,omitempty"`
-	DebtOverloaded  bool         `json:"debtOverloaded,omitempty"`
-	RemFnOverloaded bool         `json:"remFnOverloaded,omitempty"`
-	Params          []*RuleParam `json:"params,omitempty"`
-	Scope           string       `json:"scope,omitempty"`
-	IsExternal      bool         `json:"isExternal,omitempty"`
-	Type            string       `json:"type,omitempty"`
+	Key                    string       `json:"key,omitempty"`
+	Repo                   string       `json:"repo,omitempty"`
+	Name                   string       `json:"name,omitempty"`
+	CreatedAt              string       `json:"createdAt,omitempty"`
+	HTMLDesc               string       `json:"htmlDesc,omitempty"`
+	MdDesc                 string       `json:"mdDesc,omitempty"`
+	Severity               string       `json:"severity,omitempty"`
+	Status                 string       `json:"status,omitempty"`
+	IsTemplate             bool         `json:"isTemplate,omitempty"`
+	TemplateKey            string       `json:"templateKey,omitempty"`
+	Tags                   []string     `json:"tags,omitempty"`
+	SysTags                []string     `json:"sysTags,omitempty"`
+	Lang                   string       `json:"lang,omitempty"`
+	LangName               string       `json:"langName,omitempty"`
+	DebtOverloaded         bool         `json:"debtOverloaded,omitempty"`
+	RemFnOverloaded        bool         `json:"remFnOverloaded,omitempty"`
+	Params                 []*RuleParam `json:"params,omitempty"`
+	Scope                  string       `json:"scope,omitempty"`
+	IsExternal             bool         `json:"isExternal,omitempty"`
+	Type                   string       `json:"type,omitempty"`
+	DefaultDebtRemFnType   string       `json:"defaultDebtRemFnType,omitempty"`
+	DefaultDebtRemFnOffset string       `json:"defaultDebtRemFnOffset,omitempty"`
+	DebtRemFnType          string       `json:"debtRemFnType,omitempty"`
 }
 
 type RuleParam struct {

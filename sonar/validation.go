@@ -74,6 +74,12 @@ func (s *IssuesService) ValidateTagsOpt(opt *IssuesTagsOption) error {
 func (s *LanguagesService) ValidateListOpt(opt *LanguagesListOption) error {
 	return nil
 }
+func (s *AlmIntegrationsService) ValidateImportGitlabProjectOpt(opt *AlmIntegrationsImportGitlabProjectOption) error {
+	return nil
+}
+func (s *AlmSettingsService) ValidateSetGitlabBindingOpt(opt *AlmSettingsSetGitlabBindingOption) error {
+	return nil
+}
 func (s *MeasuresService) ValidateComponentOpt(opt *MeasuresComponentOption) error {
 	return nil
 }
