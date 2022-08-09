@@ -8,18 +8,19 @@ type MetricsService struct {
 }
 
 type Metric struct {
-	ID           string  `url:"id,omitempty" json:"id,omitempty"`
-	Description  string  `url:"description,omitempty"` // Description:"Description",ExampleValue:"Size of the team"
-	Direction    int     `json:"direction"`
-	Domain       string  `url:"domain,omitempty"` // Description:"Domain",ExampleValue:"Tests"
-	Key          string  `url:"key,omitempty"`    // Description:"Key",ExampleValue:"team_size"
-	Name         string  `url:"name,omitempty"`   // Description:"Name",ExampleValue:"Team Size"
-	Type         string  `url:"type,omitempty"`   // Description:"Metric type key",ExampleValue:"INT"
-	Qualitative  bool    `json:"qualitative,omitempty"`
-	Hidden       bool    `json:"hidden,omitempty"`
-	Period       *Period `json:"period,omitempty"`
-	Custom       bool    `json:"custom,omitempty"`
-	DecimalScale int     `json:"decimalScale,omitempty"`
+	ID                    string  `url:"id,omitempty" json:"id,omitempty"`
+	Description           string  `url:"description,omitempty"` // Description:"Description",ExampleValue:"Size of the team"
+	Direction             int     `json:"direction"`
+	Domain                string  `url:"domain,omitempty"` // Description:"Domain",ExampleValue:"Tests"
+	Key                   string  `url:"key,omitempty"`    // Description:"Key",ExampleValue:"team_size"
+	Name                  string  `url:"name,omitempty"`   // Description:"Name",ExampleValue:"Team Size"
+	Type                  string  `url:"type,omitempty"`   // Description:"Metric type key",ExampleValue:"INT"
+	Qualitative           bool    `json:"qualitative,omitempty"`
+	HigherValuesAreBetter bool    `json:"higherValuesAreBetter,omitempty"`
+	Hidden                bool    `json:"hidden,omitempty"`
+	Period                *Period `json:"period,omitempty"`
+	Custom                bool    `json:"custom,omitempty"`
+	DecimalScale          int     `json:"decimalScale,omitempty"`
 }
 
 func (s *MetricsService) GetDefaultMetrics() []Metric {
