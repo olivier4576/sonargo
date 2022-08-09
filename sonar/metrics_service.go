@@ -17,6 +17,8 @@ type Metric struct {
 	Type                  string  `url:"type,omitempty"`   // Description:"Metric type key",ExampleValue:"INT"
 	Qualitative           bool    `json:"qualitative,omitempty"`
 	HigherValuesAreBetter bool    `json:"higherValuesAreBetter,omitempty"`
+	BestValue             string  `json:"bestValue,omitempty"`
+	WorstValue            string  `json:"worstValue,omitempty"`
 	Hidden                bool    `json:"hidden,omitempty"`
 	Period                *Period `json:"period,omitempty"`
 	Custom                bool    `json:"custom,omitempty"`
