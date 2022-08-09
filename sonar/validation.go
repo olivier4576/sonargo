@@ -74,7 +74,7 @@ func (s *IssuesService) ValidateTagsOpt(opt *IssuesTagsOption) error {
 func (s *LanguagesService) ValidateListOpt(opt *LanguagesListOption) error {
 	return nil
 }
-func (s *HotspotsService) ValidateSearchOpt(opt *HotspotSearchOption) error {
+func (s *HotspotsService) ValidateSearchOpt(opt *HotspotsSearchOption) error {
 	return nil
 }
 func (s *AlmIntegrationsService) ValidateImportGitlabProjectOpt(opt *AlmIntegrationsImportGitlabProjectOption) error {
