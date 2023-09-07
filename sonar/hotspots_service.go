@@ -8,8 +8,8 @@ type HotspotsService struct {
 
 type HotspotsSearchOption struct {
 	ProjectKey      string `url:"projectKey,omitempty"` // Description:"Comma-separated list of component keys. Retrieve issues associated to a specific list of components (and all its descendants). A component can be a portfolio, project, module, directory or file.",ExampleValue:"my_project"
-	P               string `url:"p,omitempty"`          // Description:"1-based page number",ExampleValue:"42"
-	Ps              string `url:"ps,omitempty"`         // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
+	P               int    `url:"p,omitempty"`          // Description:"1-based page number",ExampleValue:"42"
+	Ps              int    `url:"ps,omitempty"`         // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
 	Status          string `url:"status,omitempty"`     // Description:"Status of the hotspot",Example:"TO_REVIEW"
 	OnlyMine        bool   `url:"onlyMine,omitempty"`   // Description:"Only include hotspots assigned to the user"
 	SinceLeakPeriod bool   `url:"sinceLeakPeriod,omitempty"`
