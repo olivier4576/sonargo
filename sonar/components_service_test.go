@@ -13,8 +13,8 @@ var _ = Describe("SonarCLI integration test", func() {
 		It("Should be ok", func() {
 			opt := &ComponentsSearchOption{
 				Language:   "",
-				P:          "",
-				Ps:         "",
+				P:          0,
+				Ps:         0,
 				Q:          "",
 				Qualifiers: QualifierProject,
 			}
@@ -26,8 +26,8 @@ var _ = Describe("SonarCLI integration test", func() {
 		It("Should get nothing", func() {
 			opt := &ComponentsSearchOption{
 				Language:   "",
-				P:          "",
-				Ps:         "",
+				P:          0,
+				Ps:         0,
 				Q:          "whatever-not-found",
 				Qualifiers: QualifierSubProject,
 			}

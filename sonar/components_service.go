@@ -51,8 +51,8 @@ type ComponentsTreeObject struct {
 
 type ComponentsSearchOption struct {
 	Language   string `url:"language,omitempty"`   // Description:"Language key. If provided, only components for the given language are returned.",ExampleValue:"py"
-	P          string `url:"p,omitempty"`          // Description:"1-based page number",ExampleValue:"42"
-	Ps         string `url:"ps,omitempty"`         // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
+	P          int    `url:"p,omitempty"`          // Description:"1-based page number",ExampleValue:"42"
+	Ps         int    `url:"ps,omitempty"`         // Description:"Page size. Must be greater than 0 and less or equal than 500",ExampleValue:"20"
 	Q          string `url:"q,omitempty"`          // Description:"Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul>",ExampleValue:"sonar"
 	Qualifiers string `url:"qualifiers,omitempty"` // Description:"Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>BRC - Sub-projects</li><li>DIR - Directories</li><li>FIL - Files</li><li>TRK - Projects</li><li>UTS - Test Files</li></ul>",ExampleValue:""
 }
