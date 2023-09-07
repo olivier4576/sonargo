@@ -93,3 +93,9 @@ func NewClientByToken(endpoint, token string) (*Client, error) {
 	c.authType = privateToken
 	return c, err
 }
+
+// WithHTTPClient adds the HTTP Client to the client
+func (c *Client) WithHTTPClient(httpClient *http.Client) *Client {
+	c.httpClient = httpClient
+	return c
+}
