@@ -1,4 +1,4 @@
-module github.com/cthackers/sonargo
+module github.com/olivier4576/sonargo
 
 go 1.19
 

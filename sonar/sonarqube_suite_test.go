@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	. "github.com/cthackers/sonargo/sonar"
+	. "github.com/olivier4576/sonargo/sonar"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )

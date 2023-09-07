@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	. "github.com/cthackers/sonargo/sonar"
-	"github.com/davecgh/go-spew/spew"
 	"io"
 	"io/ioutil"
 	"os"
+
+	"github.com/davecgh/go-spew/spew"
+	. "github.com/olivier4576/sonargo/sonar"
 )
 
 var client *Client
