@@ -24,11 +24,13 @@ type Hotspot struct {
 	Status                   string        `json:"status"`
 	Line                     int           `json:"line"`
 	Message                  string        `json:"message"`
+	Assignee                 string        `json:"assignee"`
 	Author                   string        `json:"author"`
 	CreationDate             string        `json:"creationDate"`
 	UpdateDate               string        `json:"updateDate"`
 	TextRange                TextRange     `json:"textRange"`
 	Flows                    []interface{} `json:"flows"`
+	RuleKey                  string        `json:"ruleKey"`
 }
 
 type HotspotsSearchObject struct {
