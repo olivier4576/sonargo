@@ -8,29 +8,35 @@ type RulesService struct {
 }
 
 type Rule struct {
-	Key                    string       `json:"key,omitempty"`
-	Repo                   string       `json:"repo,omitempty"`
-	Name                   string       `json:"name,omitempty"`
-	CreatedAt              string       `json:"createdAt,omitempty"`
-	HTMLDesc               string       `json:"htmlDesc,omitempty"`
-	MdDesc                 string       `json:"mdDesc,omitempty"`
-	Severity               string       `json:"severity,omitempty"`
-	Status                 string       `json:"status,omitempty"`
-	IsTemplate             bool         `json:"isTemplate,omitempty"`
-	TemplateKey            string       `json:"templateKey,omitempty"`
-	Tags                   []string     `json:"tags,omitempty"`
-	SysTags                []string     `json:"sysTags,omitempty"`
-	Lang                   string       `json:"lang,omitempty"`
-	LangName               string       `json:"langName,omitempty"`
-	DebtOverloaded         bool         `json:"debtOverloaded,omitempty"`
-	RemFnOverloaded        bool         `json:"remFnOverloaded,omitempty"`
-	Params                 []*RuleParam `json:"params,omitempty"`
-	Scope                  string       `json:"scope,omitempty"`
-	IsExternal             bool         `json:"isExternal,omitempty"`
-	Type                   string       `json:"type,omitempty"`
-	DefaultDebtRemFnType   string       `json:"defaultDebtRemFnType,omitempty"`
-	DefaultDebtRemFnOffset string       `json:"defaultDebtRemFnOffset,omitempty"`
-	DebtRemFnType          string       `json:"debtRemFnType,omitempty"`
+	Key                    string                `json:"key,omitempty"`
+	Repo                   string                `json:"repo,omitempty"`
+	Name                   string                `json:"name,omitempty"`
+	CreatedAt              string                `json:"createdAt,omitempty"`
+	HTMLDesc               string                `json:"htmlDesc,omitempty"` // Deprecated: 9.5 The field 'htmlDesc' has been deprecated, use 'descriptionSections' instead
+	MdDesc                 string                `json:"mdDesc,omitempty"`
+	Severity               string                `json:"severity,omitempty"`
+	Status                 string                `json:"status,omitempty"`
+	IsTemplate             bool                  `json:"isTemplate,omitempty"`
+	TemplateKey            string                `json:"templateKey,omitempty"`
+	Tags                   []string              `json:"tags,omitempty"`
+	SysTags                []string              `json:"sysTags,omitempty"`
+	Lang                   string                `json:"lang,omitempty"`
+	LangName               string                `json:"langName,omitempty"`
+	DebtOverloaded         bool                  `json:"debtOverloaded,omitempty"` // Deprecated: 5.5 The field 'debtOverloaded' has been deprecated, use 'remFnOverloaded' instead
+	RemFnOverloaded        bool                  `json:"remFnOverloaded,omitempty"`
+	Params                 []*RuleParam          `json:"params,omitempty"`
+	Scope                  string                `json:"scope,omitempty"`
+	IsExternal             bool                  `json:"isExternal,omitempty"`
+	Type                   string                `json:"type,omitempty"`
+	DefaultDebtRemFnType   string                `json:"defaultDebtRemFnType,omitempty"`   // Deprecated: 10.0 The field 'defaultDebtRemFnType' has been deprecated, use 'defaultRemFnType' instead
+	DefaultDebtRemFnOffset string                `json:"defaultDebtRemFnOffset,omitempty"` // Deprecated: 5.5 The field 'defaultDebtRemFnOffset' has been deprecated, use 'defaultRemFnBaseEffort' instead
+	DebtRemFnType          string                `json:"debtRemFnType,omitempty"`          // Deprecated: 10.0 The field 'debtRemFnType' has been deprecated, use 'remFnType' instead
+	DebtRemFnOffset        string                `json:"debtRemFnOffset,omitempty"`        // Deprecated: 5.5 The field 'debtRemFnOffset' has been deprecated, use 'remFnBaseEffort' instead
+	DefaultRemFnType       string                `json:"defaultRemFnType,omitempty"`
+	DefaultRemFnBaseEffort string                `json:"defaultRemFnBaseEffort,omitempty"`
+	RemFnType              string                `json:"remFnType,omitempty"`
+	RemFnBaseEffort        string                `json:"remFnBaseEffort,omitempty"`
+	DescriptionSections    []*DescriptionSection `json:"descriptionSections,omitempty"`
 }
 
 type RuleParam struct {
@@ -38,6 +44,10 @@ type RuleParam struct {
 	Key          string `json:"key,omitempty"`
 	HTMLDesc     string `json:"htmlDesc,omitempty"`
 	Type         string `json:"type,omitempty"`
+}
+type DescriptionSection struct {
+	Key     string `json:"key,omitempty"`
+	Content string `json:"content,omitempty"`
 }
 type RulesRepositoriesObject struct {
 	Repositories []*Repositorie `json:"repositories,omitempty"`
@@ -58,6 +68,7 @@ type RulesSearchObject struct {
 	Ps      int64    `json:"ps,omitempty"`
 	Rules   []*Rule  `json:"rules,omitempty"`
 	Total   int64    `json:"total,omitempty"`
+	Paging  *Paging  `json:"paging,omitempty"`
 }
 
 type RuleUpdateObject RuleCreateObject
