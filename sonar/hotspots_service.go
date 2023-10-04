@@ -22,6 +22,7 @@ type Hotspot struct {
 	SecurityCategory         string        `json:"securityCategory"`
 	VulnerabilityProbability string        `json:"vulnerabilityProbability"`
 	Status                   string        `json:"status"`
+	Resolution               string        `json:"resolution"`
 	Line                     int           `json:"line"`
 	Message                  string        `json:"message"`
 	Assignee                 string        `json:"assignee"`
